@@ -7,11 +7,9 @@ import com.crud.tasks.trello.client.TrelloClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/trello")
 @RequiredArgsConstructor
