@@ -33,8 +33,7 @@ public class SimpleEmailService {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        mailMessage.setCc(mail.getToCc());
-        Optional<String> checkIfCc = Optional.of(mail.getToCc());
+        Optional<String> checkIfCc = Optional.of("");
         checkIfCc.ifPresent(mail2 -> { mailMessage.setCc(mail.getToCc()); });
         return mailMessage;
     }
