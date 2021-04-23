@@ -36,7 +36,7 @@ public class SimpleEmailService {
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
         Optional<String> checkIfCc = Optional.ofNullable(mail.getToCc());
-        checkIfCc.ifPresent(mail2 -> { mailMessage.setCc(mail.getToCc()); });
+        checkIfCc.ifPresent(mailMessage::setCc);
         return mailMessage;
     }
 }
