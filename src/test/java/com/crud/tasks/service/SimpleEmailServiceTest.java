@@ -30,7 +30,7 @@ class SimpleEmailServiceTest {
                 .mailTo("test@test.com")
                 .subject("Test")
                 .message("Test messange")
-                .toCc(null)
+                .toCc("test")
                 .build();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
