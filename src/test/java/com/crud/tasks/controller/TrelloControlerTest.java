@@ -91,6 +91,6 @@ class TrelloControlerTest {
                 .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(createdTrelloCardDto.getId())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is("Test")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.shortUrl", Matchers.is(createdTrelloCardDto.getShortUrl())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.shortUrl", Matchers.is("http://test.com")));
     }
 }

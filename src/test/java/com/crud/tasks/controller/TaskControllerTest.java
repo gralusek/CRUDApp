@@ -32,14 +32,8 @@ class TaskControllerTest {
     @MockBean
     private TaskController taskController;
 
-    @MockBean
-    private DbService dbService;
-
-    @MockBean
-    private TaskMapper taskMapper;
-
     @Test
-    void getTasks() throws Exception {
+    public void getTasks() throws Exception {
         //Given
         when(taskController.getTasks()).thenReturn(List.of());
 
@@ -53,7 +47,7 @@ class TaskControllerTest {
     }
 
     @Test
-    void getTask() throws Exception {
+    public void getTask() throws Exception {
         //Given
         TaskDto taskDto = new TaskDto(1L, "title", "content");
         when(taskController.getTask(taskDto.getId())).thenReturn(taskDto);
@@ -69,7 +63,7 @@ class TaskControllerTest {
     }
 
     @Test
-    void deleteTask() throws Exception {
+    public void deleteTask() throws Exception {
         //Given
         TaskDto taskDto = new TaskDto(1L, "title", "content");
 
@@ -82,13 +76,10 @@ class TaskControllerTest {
     }
 
     @Test
-    void updateTask() throws Exception {
+    public void updateTask() throws Exception {
         //Given
         TaskDto taskDto = new TaskDto(1L, "title", "content");
-        Task task = new Task(1L, "title", "content");
-        when(taskMapper.mapToTask(taskDto)).thenReturn(task);
-        when(dbService.saveTask(task)).thenReturn(task);
-        when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
+        when(taskController.updateTask(taskDto)).thenReturn(taskDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
 
@@ -100,17 +91,14 @@ class TaskControllerTest {
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1L)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is(taskDto.getTitle())));
     }
 
     @Test
-    void createTask() throws Exception{
+    public void createTask() throws Exception{
         //Given
         TaskDto taskDto = new TaskDto(1L, "title", "content");
-        Task task = new Task(1L, "title", "content");
-        when(dbService.saveTask(task)).thenReturn(task);
-        //when(taskController.createTask(taskDto)).thenReturn(task);
-        //when(taskController.createTask(any(TaskDto.class))).thenReturn(task);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
 

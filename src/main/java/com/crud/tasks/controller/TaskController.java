@@ -46,7 +46,6 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
     public void deleteTask(@RequestParam Long taskId) {
-        //taskMapper.mapToTaskDto(service.deleteTask(taskId));
         service.deleteTask(taskId);
 
     }
@@ -56,7 +55,6 @@ public class TaskController {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
         return taskMapper.mapToTaskDto(savedTask);
-        //return new TaskDto(1L, "updated title", "updated content");
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
