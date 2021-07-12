@@ -7,8 +7,10 @@ import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.client.TrelloClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Optional.ofNullable;
@@ -36,4 +38,12 @@ public class TrelloService {
                 )));
         return newCard;
     }
+
+/*    public Long tasksCounter() {
+        List <TrelloBoardDto> boardsLists = fetchTrelloBoards();
+        return ofNullable(boardsLists).ifPresent(boardsLists.stream()
+                .filter(p -> p.getName().contains("Do zrobienia"))
+                .map(p -> p.getLists().size())
+                .
+    }*/
 }
