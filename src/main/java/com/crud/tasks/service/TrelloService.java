@@ -22,6 +22,8 @@ public class TrelloService {
     private final TrelloClient trelloClient;
     private final SimpleEmailService emailService;
     private final AdminConfig adminConfig;
+    private final DbService dbService;
+    private final MailCreatorService mailCreatorService;
 
     public List<TrelloBoardDto> fetchTrelloBoards() {
         return trelloClient.getTrelloBoards();
@@ -33,17 +35,11 @@ public class TrelloService {
                 new Mail(
                         adminConfig.getAdminMail(),
                         SUBJECT,
-                        "New card: " + trelloCardDto.getName() + " has been created on your Trello account",
+                        mailCreatorService.buildTrelloCardEmail("New card: " + trelloCardDto.getName() + " has been created on your Trello account"),
                         null
                 )));
         return newCard;
     }
 
-/*    public Long tasksCounter() {
-        List <TrelloBoardDto> boardsLists = fetchTrelloBoards();
-        return ofNullable(boardsLists).ifPresent(boardsLists.stream()
-                .filter(p -> p.getName().contains("Do zrobienia"))
-                .map(p -> p.getLists().size())
-                .
-    }*/
+
 }

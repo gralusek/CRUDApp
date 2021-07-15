@@ -66,7 +66,6 @@ public class MailCreatorService {
         context.setVariable("show_button", false);
         context.setVariable("is_friend", false);
         context.setVariable("application_functionality", functionality);
-        context.setVariable("tasks_coutner", 5);
         return templateEngine.process("mail/created-trello-counter-mail", context);
     }
 }
