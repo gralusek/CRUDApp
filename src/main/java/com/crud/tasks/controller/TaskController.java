@@ -49,7 +49,7 @@ public class TaskController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/tasks/{taskId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/tasks")
     public TaskDto updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
